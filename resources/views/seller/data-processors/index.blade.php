@@ -81,6 +81,45 @@
                 'timer': 1500
             })
         }
+
+        function deleteDataProcessor(e) {
+            let id = e.getAttribute('data-id');
+
+            Swal.fire({
+                title: 'Hapus',
+                text: 'Yakin Data Akan dihapus ?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'DELETE',
+                        url: '/seller/data-processor/' + id,
+                        dataType: "json",
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Success',
+                                text: response.message,
+                                icon: 'success',
+                            }).then((result) => {
+                                window.location.href = '/seller/data-processor';
+                            })
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                        }
+                    });
+                }
+
+            })
+        }
     </script>
 
     <script>

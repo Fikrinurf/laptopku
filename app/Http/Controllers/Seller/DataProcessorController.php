@@ -12,6 +12,7 @@ class DataProcessorController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
      */
     public function index()
     {
@@ -24,7 +25,7 @@ class DataProcessorController extends Controller
                     return '
                 <div>
                         <a href="/seller/data-processor/' . $processors->id . '/edit" class="btn btn-primary text-white">Edit</a>
-                        <a href="#" class="btn btn-danger text-white">Delete</a>
+                        <a href="#" onclick="deleteDataProcessor(this)" data-id="' . $processors->id . '" class="btn btn-danger text-white">Delete</a>
                 </div>';
                 })
                 ->rawColumns(['button'])
@@ -50,7 +51,7 @@ class DataProcessorController extends Controller
         $data = $request->validated();
 
         Processors::create($data);
-        return redirect(url('/seller/data-processor'))->with('success', 'Data article has been created');
+        return redirect(url('/seller/data-processor'))->with('success', 'Berhasil menambahkan data processor');
     }
 
     /**
@@ -66,15 +67,19 @@ class DataProcessorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $processor = Processors::find($id);
+        return view('seller.data-processors.edit', compact('processor'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProcessorRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        Processors::find($id)->update($data);
+
+        return redirect(url('/seller/data-processor'))->with('success', 'Data Processor berhasil di ubah');
     }
 
     /**
@@ -82,6 +87,11 @@ class DataProcessorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Processors::find($id);
+        $data->delete();
+
+        return response()->json([
+            'message' => 'data processor dihapus'
+        ]);
     }
 }
