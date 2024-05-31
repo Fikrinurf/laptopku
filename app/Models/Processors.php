@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Processors extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'brand', 'generation', 'core', 'thread', 'release_date'];
 }
