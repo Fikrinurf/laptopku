@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Seller\DataBrandController;
 use App\Http\Controllers\Seller\DataProcessorController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,5 @@ Route::get('/', function () {
 });
 
 Route::resource('/seller/data-processor', DataProcessorController::class);
+
+Route::resource('/seller/data-brand', DataBrandController::class);

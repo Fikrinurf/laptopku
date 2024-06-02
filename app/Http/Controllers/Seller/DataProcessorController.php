@@ -17,7 +17,7 @@ class DataProcessorController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $processors = Processors::get();
+            $processors = Processors::latest()->get();
 
             return DataTables::of($processors)
                 ->addIndexColumn()

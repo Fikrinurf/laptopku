@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('brand_name');
             $table->string('country');
-            $table->date('founded');
+            $table->string('founder');
+            $table->string('founded_place');
+            $table->date('founded_date');
             $table->timestamps();
         });
     }
