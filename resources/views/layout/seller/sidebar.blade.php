@@ -27,7 +27,7 @@
                 </li><!--//nav-item-->
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ Request::is('seller/data-processor') ? 'active' : '' }}"
+                    <a class="nav-link {{ Request::is('seller/data-processor*') ? 'active' : '' }}"
                         href="{{ '/seller/data-processor' }}">
                         <span class="nav-icon">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder"
@@ -43,7 +43,7 @@
                 </li><!--//nav-item-->
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ Request::is('seller/data-brand') ? 'active' : '' }}""
+                    <a class="nav-link {{ Request::is('seller/data-brand*') ? 'active' : '' }}""
                         href="{{ '/seller/data-brand' }}">
                         <span class="nav-icon">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-list"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BrandRequest;
 use App\Models\Brand;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -23,7 +24,7 @@ class DataBrandController extends Controller
                     return '
                 <div>
                         <a href="/seller/data-brand/' . $brand->id . '/edit" class="btn btn-primary text-white">Edit</a>
-                        <a href="#" onclick="deleteDataProcessor(this)" data-id="' . $brand->id . '" class="btn btn-danger text-white">Delete</a>
+                        <a href="#" onclick="deleteDataBrand(this)" data-id="' . $brand->id . '" class="btn btn-danger text-white">Delete</a>
                 </div>';
                 })
                 ->rawColumns(['button'])
@@ -37,15 +38,18 @@ class DataBrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('seller.data-brand-laptop.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BrandRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        Brand::create($data);
+        return redirect(url('/seller/data-brand'))->with('success', 'Berhasil menambahkan data brand laptop');
     }
 
     /**
@@ -61,15 +65,19 @@ class DataBrandController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $brand = Brand::find($id);
+        return view('seller.data-brand-laptop.edit', compact('brand'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BrandRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        Brand::find($id)->update($data);
+
+        return redirect(url('/seller/data-brand'))->with('success', 'Data Brand Laptop berhasil diupdate');
     }
 
     /**
@@ -77,6 +85,11 @@ class DataBrandController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Brand::find($id);
+        $data->delete();
+
+        return response()->json([
+            'message' => 'data processor dihapus'
+        ]);
     }
 }

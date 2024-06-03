@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 @endpush
 
-@section('title', 'Seller - Data Processor')
+@section('title', 'Seller - Data Brand Laptop')
 
 @section('content')
     <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -12,8 +12,8 @@
 
             <div class="row g-3 mb-4 align-items-center justify-content-between">
                 <div class="col-auto">
-                    <h1 class="app-page-title mb-0">Data Processor</h1>
-                    <a href="{{ '/seller/data-processor/create' }}" class="btn btn-success text-white mt-4">Tambah</a>
+                    <h1 class="app-page-title mb-0">Data Brand Laptop</h1>
+                    <a href="{{ '/seller/data-brand/create' }}" class="btn btn-success text-white mt-4">Tambah</a>
                     @if ($errors->any())
                         <div class="mt-3">
                             <div class="alert alert-danger">
@@ -67,6 +67,60 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script>
+        const swal = $('.swal').data('swal');
+
+        if (swal) {
+            Swal.fire({
+                'title': 'Success',
+                'text': swal,
+                'icon': 'success',
+                'showConfirmButton': false,
+                'timer': 1500
+            })
+        }
+
+        function deleteDataBrand(e) {
+            let id = e.getAttribute('data-id');
+
+            Swal.fire({
+                title: 'Hapus',
+                text: 'Yakin Data Akan dihapus ?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'DELETE',
+                        url: '/seller/data-brand/' + id,
+                        dataType: "json",
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Success',
+                                text: response.message,
+                                icon: 'success',
+                            }).then((result) => {
+                                window.location.href = '/seller/data-brand';
+                            })
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                        }
+                    });
+                }
+
+            })
+        }
+    </script>
 
     <script>
         $(document).ready(function() {

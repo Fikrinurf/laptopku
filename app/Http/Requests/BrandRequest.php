@@ -11,7 +11,7 @@ class BrandRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class BrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'brand_name' => 'required',
+            'country' => 'required',
+            'founder' => 'required',
+            'founded_place' => 'required',
+            'founded_date' => 'required',
         ];
     }
 }
