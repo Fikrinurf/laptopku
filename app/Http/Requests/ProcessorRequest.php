@@ -30,4 +30,16 @@ class ProcessorRequest extends FormRequest
             'release_date' => 'required',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama prosesor harus diisi.',
+            'brand.required' => 'Merek prosesor harus diisi.',
+            'generation.required' => 'Generasi prosesor harus diisi.',
+            'core.required' => 'Jumlah core prosesor harus diisi.',
+            'thread.required' => 'Jumlah thread prosesor harus diisi.',
+            'release_date.required' => 'Tanggal rilis prosesor harus diisi.',
+        ];
+    }
 }
