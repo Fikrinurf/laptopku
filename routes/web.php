@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Seller\DataBrandController;
 use App\Http\Controllers\Seller\DataProcessorController;
+use App\Http\Controllers\Seller\ProductController;
+use App\Http\Controllers\Seller\SliderController;
 use App\Http\Controllers\Seller\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +27,8 @@ Route::resource('/seller/data-processor', DataProcessorController::class);
 
 Route::resource('/seller/data-brand', DataBrandController::class);
 
-Route::resource('/seller/user-management', UserManagementController::class);
+Route::resource('/seller/user-management', UserManagementController::class)->only('index', 'destroy');
+
+Route::resource('/seller/slider', SliderController::class);
+
+Route::resource('/seller/product', ProductController::class);
