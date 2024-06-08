@@ -11,7 +11,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'product_name' => 'required',
+            'desc' => 'required',
+            'price' => 'required',
+            'specification' => 'required',
+            'processor_id' => 'required',
+            'brand_id' => 'required',
+            'warranty' => 'required',
+            'img' => 'required|image|file|mimes:png,jpg,jpeg,webp|max:2024',
+            'upload_date' => 'required',
         ];
     }
 }

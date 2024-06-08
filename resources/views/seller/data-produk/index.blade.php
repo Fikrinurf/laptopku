@@ -82,7 +82,7 @@
             })
         }
 
-        function deleteSlider(e) {
+        function deleteProduct(e) {
             let id = e.getAttribute('data-id');
 
             Swal.fire({
@@ -101,7 +101,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type: 'DELETE',
-                        url: '/seller/slider/' + id,
+                        url: '/seller/product/' + id,
                         dataType: "json",
                         success: function(response) {
                             Swal.fire({
@@ -109,7 +109,7 @@
                                 text: response.message,
                                 icon: 'success',
                             }).then((result) => {
-                                window.location.href = '/seller/slider';
+                                window.location.href = '/seller/product';
                             })
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
