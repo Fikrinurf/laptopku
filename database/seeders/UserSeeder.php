@@ -14,14 +14,28 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'name' => 'Zaky Maruf',
-            'email' => 'marufzaky@gmail.com',
-            'password' => '123456',
-            'address' => 'Japara',
-            'role' => 'buyer',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $data = [
+            [
+                'name' => 'admin',
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('123456'),
+                'address' => 'Kuningan',
+                'role' => 'seller',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'buyer',
+                'email' => 'buyer@gmail.com',
+                'password' => bcrypt('123456'),
+                'address' => 'Cirebon',
+                'role' => 'buyer',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ];
+
+
+        DB::table('users')->insert($data);
     }
 }
