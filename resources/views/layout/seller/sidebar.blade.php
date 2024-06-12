@@ -106,8 +106,7 @@
                 <ul class="app-menu footer-menu list-unstyled">
                     <li class="nav-item">
                         <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                        <a class="nav-link"
-                            href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">
+                        <a class="nav-link" href="{{ '/logout' }}">
                             <span class="nav-icon">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-person"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +115,7 @@
                                     <path fill-rule="evenodd" d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                 </svg>
                             </span>
-                            <span class="nav-link-text">License</span>
+                            <span class="nav-link-text">Logout</span>
                         </a><!--//nav-link-->
                     </li><!--//nav-item-->
                 </ul><!--//footer-menu-->
